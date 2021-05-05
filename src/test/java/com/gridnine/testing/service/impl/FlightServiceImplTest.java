@@ -2,7 +2,6 @@ package com.gridnine.testing.service.impl;
 
 import com.gridnine.testing.model.Flight;
 import com.gridnine.testing.model.FlightBuilder;
-import com.gridnine.testing.model.Segment;
 import com.gridnine.testing.service.FlightService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +12,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+
 
 public class FlightServiceImplTest {
 
@@ -25,7 +24,7 @@ public class FlightServiceImplTest {
         List<Flight> testFlights = createTestFlights();
         List<Flight> result = flightService.minusDepartureTimeBeforeCurrentTime(testFlights);
         Assert.assertFalse(result.isEmpty());
-        Assert.assertEquals(5, result.size());
+        Assert.assertEquals(4, result.size());
         Assert.assertTrue(result.stream()
                 .flatMap(flight -> flight.getSegments().stream())
                 .allMatch(segment -> segment.getDepartureDate().isAfter(LocalDateTime.now())));
